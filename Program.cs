@@ -14,11 +14,11 @@ namespace Dice_Game
 
             rounds = GetNumberOfRounds();
 
-            for (int round = 1; round < rounds; round++)
+            Console.WriteLine();
+            Console.WriteLine(rounds + " Rounds");
+            for (int round = 1; round < rounds + 1; round++)
             {
-                Console.WriteLine("----------------");
-                Console.WriteLine(rounds + " Rounds");
-                Console.WriteLine();
+                Console.WriteLine("----------------");                
                 Console.WriteLine("Round " + round);
 
                 Console.WriteLine("Press any key to roll dice");
