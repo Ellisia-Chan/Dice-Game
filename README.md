@@ -1,2 +1,2 @@
-# Dice-Game
-Dice game 
+# Terminal Base Dice Game
+
