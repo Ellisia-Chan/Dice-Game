@@ -5,4 +5,5 @@
 
 
 
-![image](https://github.com/ChristianJude23/Dice-Game/assets/152279955/4fee7ab8-200f-4272-b669-2fa38a0c8cbe)
+![image](https://github.com/ChristianJude23/Dice-Game/assets/152279955/721443a7-711b-4662-9ac1-5e7171d0eee9)
+
