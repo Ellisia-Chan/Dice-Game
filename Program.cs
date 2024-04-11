@@ -6,100 +6,113 @@ namespace Dice_Game
     {
         static void Main(string[] args)
         {
-            int playerRandomNum;
-            int enemyRandomNum;
-            string option;
-
             int rounds = 0;
-            int roundTurn = 0;
             int playerScore = 0;
             int enemyScore = 0;
 
             Random random = new Random();
 
-            while (true)
+            rounds = GetNumberOfRounds();
+
+            for (int round = 1; round < rounds; round++)
             {
-                Console.WriteLine("Dice Game");
-                Console.WriteLine("Select Rounds");
-                Console.WriteLine("a. 5 Rounds");
-                Console.WriteLine("b. 10 Rounds");
-                Console.WriteLine("c. 15 Rounds");
-                Console.Write("> ");
-                option = Console.ReadLine();
+                Console.WriteLine("----------------");
+                Console.WriteLine(rounds + " Rounds");
                 Console.WriteLine();
+                Console.WriteLine("Round " + round);
 
-                if (option.ToLower() == "a")
-                {
-                    rounds = 5;
-                    break;
-                }
-                else if (option.ToLower() == "b")
-                {
-                    rounds = 10;
-                    break;
-                }
-                else if (option.ToLower() == "c")
-                {
-                    rounds = 15;
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Enter a Valid Option");
-                }
-            }
-
-            Console.WriteLine(rounds + " Rounds");
-            for (int i = 0; i < rounds; i++)
-            {
-                roundTurn++;
-                Console.WriteLine("Round " + roundTurn);
-                Console.WriteLine("Press a Key to Roll the Dice");
+                Console.WriteLine("Press any key to roll dice");
                 Console.ReadKey();
 
-                playerRandomNum = random.Next(1, 7);
-                Console.WriteLine("You Rolled a: " + playerRandomNum);
+                int playerDiceValue = RollDice(random);
+                Console.WriteLine("You Rolled a: " + playerDiceValue);
+                Console.WriteLine();
 
-
-                Console.WriteLine("...");
+                Console.WriteLine("Enemy is Rolling");
                 System.Threading.Thread.Sleep(1000);
 
-                enemyRandomNum = random.Next(1, 7);
-                Console.WriteLine("Enemy Rolled a: " + enemyRandomNum);
+                int enemyDiceValue = RollDice(random);
+                Console.WriteLine("Enemy Rolled a: " + enemyDiceValue);
+                Console.WriteLine();
 
-                if (playerRandomNum > enemyRandomNum)
+                if (playerDiceValue > enemyDiceValue)
                 {
                     playerScore++;
-                    Console.WriteLine("Player Win This Round!");
+                    Console.WriteLine("You Wins This Round!");
+                    Console.WriteLine();
                 }
-                else if (enemyRandomNum > playerRandomNum)
+                else if (enemyDiceValue > playerDiceValue)
                 {
                     enemyScore++;
-                    Console.WriteLine("Enemy Win This Round!");
+                    Console.WriteLine("Enemy Wins This Round!");
+                    Console.WriteLine();
                 }
                 else
                 {
-                    Console.WriteLine("Draw!");
+                    Console.WriteLine("It's a Draw!");
+                    Console.WriteLine();
                 }
 
-                Console.WriteLine("The Score is now - Player: " + playerScore + ". Enemy: " + enemyScore + ".");
+                Console.WriteLine("Score - Player: " + playerScore + ", Enemy: " + enemyScore);
+                Console.WriteLine("----------------");
+                System.Threading.Thread.Sleep(1000);
                 Console.WriteLine();
             }
             if (playerScore > enemyScore)
             {
-                Console.WriteLine("Player Wins");
+                Console.WriteLine("Congratulations, You Win The Game!");
             }
-            else if (enemyScore > playerScore)
+            else if (playerScore < enemyScore)
             {
-                Console.WriteLine("Enemy Wins!");
-
+                Console.WriteLine("Sorry, You Lose The Game!");
             }
             else
             {
-                Console.WriteLine("Draw!");
+                Console.WriteLine("The Game Ends In A Draw!");
             }
-
             Console.ReadKey();
+        }
+
+        static int GetNumberOfRounds()
+        {
+            int rounds = 0;
+            while (true)
+            {
+                Console.WriteLine("Dice Game");
+                Console.WriteLine("Select Number of Rounds:");
+                Console.WriteLine("a. 5 Rounds");
+                Console.WriteLine("b. 10 Rounds");
+                Console.WriteLine("c. 15 Rounds");
+                Console.Write("> ");
+
+                string option = Console.ReadLine();
+
+                if (option == "a" || option == "b" || option == "c")
+                {
+                    switch (option)
+                    {
+                        case "a":
+                            rounds = 5;
+                            break;
+                        case "b":
+                            rounds = 10;
+                            break;
+                        case "c":
+                            rounds = 15;
+                            break;
+                    }
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a valid option (a, b, or c).");
+                }
+            }
+            return rounds;
+        }
+        static int RollDice(Random random)
+        {
+            return random.Next(1, 7);
         }
     }
 }
